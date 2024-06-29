@@ -12,7 +12,9 @@ const Signup = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant={"h5"} align="center">Welcome to Coursera!</Typography>
+      <Typography variant={"h5"} align="center">
+        Welcome to Coursera!
+      </Typography>
       <Card
         varient={"outlined"}
         style={{
@@ -22,20 +24,29 @@ const Signup = () => {
         }}
       >
         <TextField
-          id="outlined-basic"
+          id= {"usename"}
           label="Username"
           variant="outlined"
           fullWidth
         />
         <br /> <br />
         <TextField
-          id="outlined-basic"
+          id= {"password"}
           label="Password"
           variant="outlined"
           fullWidth
         />
         <br /> <br />
-        <Button variant="contained">Sign up</Button>
+        <Button variant="contained" onClick={() => {
+          let Username = document.getElementById("usename").value;
+          let Password = document.getElementById("password").value;
+
+          console.log(Username, Password);
+
+          fetch ()
+        }}>
+          Sign up
+        </Button>
       </Card>
     </div>
   );
