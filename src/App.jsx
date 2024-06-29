@@ -1,20 +1,24 @@
 import { useState } from "react";
 import Signup from "./Components/Signup";
-import { AppBar } from "@mui/material";
 import Appbar from "./Components/Appbar";
 import Signin from "./Components/Signin";
+import { Route, Router, Routes } from "react-router-dom";
 
 function App() {
   return (
-    <div
-      style={{
-        backgroundColor: "#eeeeee",
-        width: "100vw",
-        height: "100vh",
-      }}
-    >
+    <div style={{
+      width: "100vw",
+      height: "100vh",
+      backgroundColor: "#eeeeee ",
+    
+    }}>
       <Appbar />
-      <Signin />
+      <Router>
+        <Routes>
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Signin />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

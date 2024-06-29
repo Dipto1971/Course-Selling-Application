@@ -15,11 +15,27 @@ const Appbar = () => {
       <div>
         <Typography> Coursera </Typography>
       </div>
-      <div style={{
-        marginRight: "100px",
-      }}>
-        <Button color="inherit">Login</Button>
-        <Button color="inherit">Signup</Button>
+      <div
+        style={{
+          marginRight: "100px",
+        }}
+      >
+        <Button
+          color="inherit"
+          onClick={() => {
+            window.location = "/login";
+          }}
+        >
+          Login
+        </Button>
+        <Button
+          color="inherit"
+          onClick={() => {
+            window.location = "/signup";
+          }}
+        >
+          Signup
+        </Button>
       </div>
     </div>
   );
