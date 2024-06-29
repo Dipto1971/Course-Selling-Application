@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Signup from "./Componentsss/Signup";
+import Signup from "./Components/Signup";
 import { AppBar } from "@mui/material";
-import Appbar from "./Componentsss/Appbar";
+import Appbar from "./Components/Appbar";
 
 function App() {
   return (
