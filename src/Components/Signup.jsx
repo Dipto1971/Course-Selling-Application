@@ -35,7 +35,7 @@ const Signup = () => {
           fullWidth
         />
         <br /> <br />
-        <Button variant="contained">Signup</Button>
+        <Button variant="contained">Sign up</Button>
       </Card>
     </div>
   );
