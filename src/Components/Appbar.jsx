@@ -1,10 +1,10 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Appbar = () => {
 
-  const history = useHistory();
+  const navigateTo = useNavigate();
 
   return (
     <div
@@ -27,7 +27,7 @@ const Appbar = () => {
         <Button
           color="inherit"
           onClick={() => {
-            history.push("/login")
+            navigateTo("/login")
           }}
         >
           Login
@@ -35,7 +35,7 @@ const Appbar = () => {
         <Button
           color="inherit"
           onClick={() => {
-            history.push("/signup")
+            navigateTo("/signup")
           }}
         >
           Signup
