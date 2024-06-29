@@ -2,6 +2,7 @@ import { useState } from "react";
 import Signup from "./Components/Signup";
 import { AppBar } from "@mui/material";
 import Appbar from "./Components/Appbar";
+import Signin from "./Components/Signin";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       }}
     >
       <Appbar />
-      <Signup />
+      <Signin />
     </div>
   );
 }
