@@ -1,7 +1,11 @@
 import { Button, Card, TextField, Typography } from "@mui/material";
 import React from "react";
+import { useState } from "react";
 
 const Signup = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <div
       style={{
@@ -12,6 +16,11 @@ const Signup = () => {
         alignItems: "center",
       }}
     >
+      <div>
+        {username}
+        <br />
+        {password}
+      </div>
       <Typography variant={"h5"} align="center">
         Welcome to Coursera!
       </Typography>
@@ -24,27 +33,30 @@ const Signup = () => {
         }}
       >
         <TextField
-          id= {"usename"}
+          onChange={(e) => setUsername(e.target.value)}
+          id={"usename"}
           label="Username"
           variant="outlined"
           fullWidth
         />
         <br /> <br />
         <TextField
-          id= {"password"}
+          onChange={(e) => setPassword(e.target.value)}
+          id={"password"}
           label="Password"
           variant="outlined"
           fullWidth
         />
         <br /> <br />
-        <Button variant="contained" onClick={() => {
-          let Username = document.getElementById("usename").value;
-          let Password = document.getElementById("password").value;
-
-          console.log(Username, Password);
-
-          fetch ()
-        }}>
+        <Button
+          variant="contained"
+          onClick={(e) => {
+            console.log(username, password);
+            
+            // Connection to backend
+            fetch();
+          }}
+        >
           Sign up
         </Button>
       </Card>
