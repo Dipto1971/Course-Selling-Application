@@ -1,7 +1,11 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 const Appbar = () => {
+
+  const history = useHistory();
+
   return (
     <div
       style={{
@@ -23,7 +27,7 @@ const Appbar = () => {
         <Button
           color="inherit"
           onClick={() => {
-            window.location = "/login";
+            history.push("/login")
           }}
         >
           Login
@@ -31,7 +35,7 @@ const Appbar = () => {
         <Button
           color="inherit"
           onClick={() => {
-            window.location = "/signup";
+            history.push("/signup")
           }}
         >
           Signup
