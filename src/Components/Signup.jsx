@@ -41,7 +41,10 @@ const Signup = () => {
         />
         <br /> <br />
         <TextField
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value)
+            console.log(e);
+          }}
           id={"password"}
           label="Password"
           variant="outlined"
