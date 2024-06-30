@@ -1,6 +1,7 @@
 import Signup from "./Components/Signup";
 import Appbar from "./Components/Appbar";
 import Signin from "./Components/Signin";
+import AddCourse from "./Components/AddCourse";
 import {
   BrowserRouter,
   Route,
@@ -23,6 +24,7 @@ function App() {
       >
         <Appbar />
         <Routes>
+          <Route path="/addcourse" element={<AddCourse />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
         </Routes>
