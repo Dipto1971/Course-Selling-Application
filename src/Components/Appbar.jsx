@@ -12,8 +12,8 @@ const Appbar = () => {
         display: "flex",
         justifyContent: "space-between",
         padding: "10px",
-        backgroundColor: "#000",
-        color: "#fff",
+        backgroundColor: "#000000ff",
+        color: "#ffffffff",
       }}
     >
       <div>
