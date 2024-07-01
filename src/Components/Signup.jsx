@@ -5,6 +5,7 @@ import { useState } from "react";
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [successfullMsg, setSuccessfullMsg] = useState("");
 
   return (
     <div
@@ -16,11 +17,6 @@ const Signup = () => {
         alignItems: "center",
       }}
     >
-      <div>
-        {username}
-        <br />
-        {password}
-      </div>
       <Typography variant={"h5"} align="center">
         Welcome to Coursera!
       </Typography>
@@ -42,7 +38,7 @@ const Signup = () => {
         <br /> <br />
         <TextField
           onChange={(e) => {
-            setPassword(e.target.value)
+            setPassword(e.target.value);
             console.log(e);
           }}
           id={"password"}
@@ -53,15 +49,35 @@ const Signup = () => {
         <br /> <br />
         <Button
           variant="contained"
-          onClick={(e) => {
-            console.log(username, password);
-            
+          onClick={() => {
             // Connection to backend
-            fetch();
+            function callbackToken(data) {
+              localStorage.setItem("token", data.token);
+            }
+
+            fetch("http://localhost:3000/admin/signup", {
+              method: "POST",
+              headers: {
+                "Content-type": "application/json",
+              },
+              body: JSON.stringify({ username: username, password: password }),
+            })
+
+            .then((res) => {
+              res.status === 200
+                ? setSuccessfullMsg("Admin created successfully")
+                : setSuccessfullMsg(res.message);
+
+                res.json().then(callbackToken)
+            });
           }}
         >
           Sign up
         </Button>
+
+        <Typography variant={"h6"} align="center">
+          {successfullMsg}
+        </Typography>
       </Card>
     </div>
   );
