@@ -3,9 +3,8 @@ import React from "react";
 import { useState } from "react";
 
 const AddCourse = () => {
-  const [courseID, setCourseID] = useState("");
-  const [courseDescription, setCourseDescription] = useState("");
-  const [successfullMsg, setSuccessfullMsg] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   return (
     <div>
@@ -30,7 +29,7 @@ const AddCourse = () => {
           }}
         >
           <TextField
-            onChange={(e) => setCourseID(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             id={"courseName"}
             label="Course Name"
             variant="outlined"
@@ -39,7 +38,7 @@ const AddCourse = () => {
           <br /> <br />
           <TextField
             onChange={(e) => {
-              setCourseDescription(e.target.value);
+              setDescription(e.target.value);
             }}
             id={"courseDescription"}
             label="Course Description"
@@ -54,24 +53,20 @@ const AddCourse = () => {
               fetch("http://localhost:3000/admin/courses", {
                 method: "POST",
                 headers: {
-                  "Content-type": "application/json",
+                  "Authorization": "Bearer " + localStorage.getItem("token"),
+                  "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  courseId: courseId,
-                  courseDescription: courseDescription,
+                  title: title,
+                  description: description,
                 }),
               }).then((res) => {
                 console.log(res);
-                setSuccessfullMsg(res);
               });
             }}
           >
             Add Course
           </Button>
-          <br /><br />
-          <Typography variant={"h6"} align="center">
-            {successfullMsg}
-          </Typography>
         </Card>
       </div>
     </div>
