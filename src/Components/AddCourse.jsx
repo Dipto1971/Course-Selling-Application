@@ -54,7 +54,7 @@ const AddCourse = () => {
                 method: "POST",
                 headers: {
                   "Authorization": "Bearer " + localStorage.getItem("token"),
-                  "Content-Type": "application/json",
+                  "Content-Type": "application/json", // Helps to understand the type of data - if not provided, the server might not understand the data
                 },
                 body: JSON.stringify({
                   title: title,
