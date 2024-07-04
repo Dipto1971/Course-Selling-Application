@@ -21,7 +21,7 @@ const Courses = () => {
 
   return <div>
     {courses.map((course) => {
-      return <div>
+      return <div key={course.name}>
         <h1>{course.title}</h1>
         <p>{course.description}</p>
       </div>;
