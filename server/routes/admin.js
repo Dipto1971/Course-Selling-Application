@@ -18,7 +18,7 @@ router.get("/me", authenticateJwt, async (req, res) => {
     })
 });
 
-router.GET("/admin/me", authenticateJwt, (req, res) => {
+router.get("/admin/me", authenticateJwt, (req, res) => {
   res.json ({
     username: req.user.username
   })
@@ -43,7 +43,7 @@ router.post('/signup', (req, res) => {
   });
   
   router.post('/login', async (req, res) => {
-    const { username, password } = req.headers;
+    const { username, password } = req.body;
     const admin = await Admin.findOne({ username, password });
     if (admin) {
       const token = jwt.sign({ username, role: 'admin' }, SECRET, { expiresIn: '1h' });
