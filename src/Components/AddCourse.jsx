@@ -5,6 +5,7 @@ import { useState } from "react";
 const AddCourse = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   return (
     <div>
@@ -46,6 +47,16 @@ const AddCourse = () => {
             fullWidth
           />
           <br /> <br />
+          <TextField
+            onChange={(e) => {
+              setImage(e.target.value);
+            }}
+            id={"courseDescription"}
+            label="Image Link"
+            variant="outlined"
+            fullWidth
+          />
+          <br /> <br />
           <Button
             variant="contained"
             onClick={() => {
@@ -59,6 +70,7 @@ const AddCourse = () => {
                 body: JSON.stringify({
                   title: title,
                   description: description,
+                  imageLink: image,
                 }),
               }).then((res) => {
                 console.log(res);
