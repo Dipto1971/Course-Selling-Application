@@ -2,6 +2,7 @@ import Signup from "./Components/Signup";
 import Appbar from "./Components/Appbar";
 import Signin from "./Components/Signin";
 import AddCourse from "./Components/AddCourse";
+import Courses from "./Courses";
 import {
   BrowserRouter,
   Route,
@@ -27,6 +28,7 @@ function App() {
           <Route path="/addcourse" element={<AddCourse />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Signin />} />
+          <Route path="/courses" element={<Courses />} />
         </Routes>
       </div>
     </BrowserRouter>
