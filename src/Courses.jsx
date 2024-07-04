@@ -1,6 +1,7 @@
-import { Card, Typography } from "@mui/material";
+import { Card, Typography, CardContent, CardMedia, Grid } from "@mui/material";
 import React from "react";
 import { useEffect } from "react";
+
 const Courses = () => {
   const [courses, setCourses] = React.useState([]);
 
@@ -21,11 +22,13 @@ const Courses = () => {
   }, []);
 
   return (
-    <div style={{display: "flex", justifyContent: "center"}}>
-      {courses.map((course) => {
-        return <Course course={course}/>;
-      })}
-    </div>
+    <Grid container spacing={4} style={{ padding: "20px" }}>
+      {courses.map((course) => (
+        <Grid item key={course.id} xs={12} sm={6} md={4}>
+          <Course course={course} />
+        </Grid>
+      ))}
+    </Grid>
   );
 };
 
@@ -33,21 +36,29 @@ function Course(props) {
   return (
     <Card
       style={{
-        margin: "10",
-        width: "300",
-        minHeight: "200",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        boxShadow: "0 4px 8px 0 rgba(0,0,0,0.2)",
+        transition: "0.3s",
       }}
     >
-      <Typography textAlign={"center"} variant={"h5"}>{props.course.title}</Typography>
-      <Typography textAlign={"center"} variant={"body1"}>{props.course.description}</Typography>
-      <img
-      style={{
-        width: "100%",
-        height: "100%",
-      }}
-        src={props.course.imageLink}
+      <CardMedia
+        component="img"
+        height="200"
+        image={props.course.imageLink}
         alt={props.course.title}
+        style={{ objectFit: "cover" }}
       />
+      <CardContent>
+        <Typography gutterBottom variant="h5" component="div" textAlign={"center"}>
+          {props.course.title}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" textAlign={"center"}>
+          {props.course.description}
+        </Typography>
+      </CardContent>
     </Card>
   );
 }
