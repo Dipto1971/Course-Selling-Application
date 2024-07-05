@@ -21,6 +21,8 @@ const Courses = () => {
     }).then(callback1);
   }, []);
 
+  console.log(courses);
+
   return (
     <Grid container spacing={4} style={{ padding: "20px" }}>
       {courses.map((course) => (
