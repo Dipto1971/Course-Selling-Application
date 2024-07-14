@@ -37,7 +37,7 @@ const Course = () => {
   return (
     <div>
       <CourseCard course={course} />
-      <UpdateCard />
+      <UpdateCard course={course}/>
     </div>
   );
 };
@@ -80,11 +80,13 @@ function CourseCard(props) {
 
 
 
-function UpdateCard() {
-  let { courseId } = useParams();
+function UpdateCard(props) {
+  const course = props.course;
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
+
+  console.log(course);
 
   return<div>
   <div
@@ -150,7 +152,7 @@ function UpdateCard() {
           }
 
           // Connection to backend
-          fetch(`http://localhost:3000/admin/course/${courseId}`, {
+          fetch(`http://localhost:3000/admin/course/${course._id}`, {
             method: "PUT",
             headers: {
               "Authorization": "Bearer " + localStorage.getItem("token"),
