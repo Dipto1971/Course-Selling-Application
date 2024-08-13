@@ -13,7 +13,6 @@ const Course = () => {
   useEffect(() => {
     function callback1(response) {
       response.json().then((data) => {
-        console.log(data);
         setCourse(data.course);
       }).catch((error) => {
         console.error('Error parsing JSON:', error);
@@ -28,7 +27,7 @@ const Course = () => {
     }).then(callback1).catch((error) => {
       console.error('Fetch error:', error);
     });
-  }, [courseId]); // Correct placement of the dependency array
+  }, [course]); // Correct placement of the dependency array
 
 
   if (!course) {
@@ -37,7 +36,7 @@ const Course = () => {
   return (
     <div>
       <CourseCard course={course} />
-      <UpdateCard course={course}/>
+      <UpdateCard course={course} setCourse={setCourse} />
     </div>
   );
 };
@@ -81,12 +80,13 @@ function CourseCard(props) {
 
 
 function UpdateCard(props) {
+
   const course = props.course;
+  const setCourse = props.setCourse;
+
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
   const [image, setImage] = React.useState("");
-
-  console.log(course);
 
   return<div>
   <div
@@ -143,8 +143,7 @@ function UpdateCard(props) {
 
           
           function callback2(data) {
-            console.log(data);
-            alert("Course updated successfully");
+            setCourse(data.course);
           }
 
           function callback1(response) {
