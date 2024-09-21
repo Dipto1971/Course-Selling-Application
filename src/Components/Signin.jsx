@@ -1,76 +1,70 @@
-import { Button, Card, TextField, Typography } from "@mui/material";
-import React from "react";
+import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
+import {Card, Typography} from "@mui/material";
+import {useState} from "react";
+import axios from "axios";
 
-const Signin = () => {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+function Signin() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
-  return (
-    <div
-      style={{
-        width: "400px",
-        margin: "auto",
-        padding: "20px",
-        marginTop: "100px",
-        alignItems: "center",
-      }}
-    >
-      <Typography variant={"h5"} align="center">
-        Welcome to Coursera!
-      </Typography>
-      <Card
-        varient={"outlined"}
-        style={{
-          width: "400px",
-          margin: "auto",
-          padding: "20px",
-        }}
-      >
-        <TextField
-          id="outlined-basic"
-          label="Username"
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <br /> <br />
-        <TextField
-          id="outlined-basic"
-          label="Password"
-          variant="outlined"
-          fullWidth
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <br /> <br />
-        <Button
-          variant="contained"
-          onClick={() => {
-            function callback1(response) {
-              response.json().then((data) => {
-                console.log(data);
-                localStorage.setItem("token", data.token);
-              });
-            }
+    return <div>
+            <div style={{
+                paddingTop: 150,
+                marginBottom: 10,
+                display: "flex",
+                justifyContent: "center"
+            }}>
+                <Typography variant={"h6"}>
+                Welcome to Coursera. Sign up below
+                </Typography>
+            </div>
+        <div style={{display: "flex", justifyContent: "center"}}>
+            <Card varint={"outlined"} style={{width: 400, padding: 20}}>
+                <TextField
+                    onChange={(evant11) => {
+                        let elemt = evant11.target;
+                        setEmail(elemt.value);
+                    }}
+                    fullWidth={true}
+                    label="Email"
+                    variant="outlined"
+                />
+                <br/><br/>
+                <TextField
+                    onChange={(e) => {
+                        setPassword(e.target.value);
+                    }}
+                    fullWidth={true}
+                    label="Password"
+                    variant="outlined"
+                    type={"password"}
+                />
+                <br/><br/>
 
-            fetch("http://localhost:3000/admin/login", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                username: username,
-                password: password,
-              }),
-            }).then(callback1);
-            console.log("Sign in button clicked");
-            console.log(username, password);
-          }}
-        >
-          Sign in
-        </Button>
-      </Card>
+                <Button
+                    size={"large"}
+                    variant="contained"
+                    onClick={async () => {
+                        const res = await axios.post("http://localhost:3000/admin/login", {
+                            username: email,
+                            password: password
+                        }, {
+                            headers: {
+                                "Content-type": "application/json"
+                            }
+                        });
+                        const data = res.data;
+                        
+                        localStorage.setItem("token", data.token);
+                        // Save the token in the local storage
+                        window.location = "/"
+                    }}
+
+                > Signin</Button>
+            </Card>
+        </div>
     </div>
-  );
-};
+}
 
 export default Signin;
