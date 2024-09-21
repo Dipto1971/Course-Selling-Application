@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 
 
 const Course = () => {
-  let { courseId } = useParams();
+  let { courseId } = useParams(); //useParams is a hook that returns an object of key/value pairs of URL parameters. Use it to access match.params of the current <Route>.
   const [course, setCourse] = React.useState(null);
 
   useEffect(() => {
