@@ -10,7 +10,7 @@ const router = express.Router();
 router.get("/me", authenticateJwt, async (req, res) => {
     const admin = await Admin.findOne({ username: req.user.username });
     if (!admin) {
-      res.status(403).json({msg: "Admin doesnt exist"})
+      res.status(403).json({msg: "Admin doesn't exist"})
       return
     }
     res.json({
