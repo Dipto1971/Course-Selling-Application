@@ -5,7 +5,7 @@ import {useState} from "react";
 import axios from "axios";
 
 function Signin() {
-    const [email, setEmail] = useState("")
+    const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
 
     return <div>
@@ -24,7 +24,7 @@ function Signin() {
                 <TextField
                     onChange={(evant11) => {
                         let elemt = evant11.target;
-                        setEmail(elemt.value);
+                        setUsername(elemt.value);
                     }}
                     fullWidth={true}
                     label="Email"
@@ -47,7 +47,7 @@ function Signin() {
                     variant="contained"
                     onClick={async () => {
                         const res = await axios.post("http://localhost:3000/admin/login", {
-                            username: email,
+                            username: username,
                             password: password
                         }, {
                             headers: {
@@ -57,8 +57,8 @@ function Signin() {
                         const data = res.data;
                         
                         localStorage.setItem("token", data.token);
-                        // Save the token in the local storage
-                        window.location = "/"
+                        console.log(data);
+                        window.location = "/courses";
                     }}
 
                 > Signin</Button>
