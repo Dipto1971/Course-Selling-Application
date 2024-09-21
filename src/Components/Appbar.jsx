@@ -1,68 +1,123 @@
-import { Button, Typography } from "@mui/material";
-import React, { useEffect } from "react";
+import { Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Appbar = () => {
-  const navigateTo = useNavigate();
-  const [userEmail, setUserEmail] = React.useState("");
+function Appbar() {
+  const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState(null);
 
   useEffect(() => {
     function callback2(data) {
-      if (data.usename) {
+      if (data.username) {
         setUserEmail(data.username);
       }
-      console.log(data);
     }
-
-    function callback1(response) {
-      response.json().then(callback2);
+    function callback1(res) {
+      res.json().then(callback2);
     }
-
     fetch("http://localhost:3000/admin/me", {
       method: "GET",
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
     }).then(callback1);
-  }, []);
+  });
 
-  return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        padding: "10px",
-        backgroundColor: "#000000ff",
-        color: "#ffffffff",
-      }}
-    >
-      <div>
-        <Typography> Coursera </Typography>
-      </div>
+  if (userEmail) {
+    return (
       <div
         style={{
-          marginRight: "100px",
+          display: "flex",
+          justifyContent: "space-between",
+          padding: 4,
+          zIndex: 1,
         }}
       >
-        <Button
-          color="inherit"
-          onClick={() => {
-            navigateTo("/login");
-          }}
-        >
-          Login
-        </Button>
-        <Button
-          color="inherit"
-          onClick={() => {
-            navigateTo("/signup");
-          }}
-        >
-          Signup
-        </Button>
+        <div style={{ marginLeft: 10 }}>
+          <Typography variant={"h6"}>Coursera</Typography>
+        </div>
+
+        <div style={{ display: "flex" }}>
+          <div style={{ marginRight: 10 }}>
+            <Typography color="#000598">{userEmail}</Typography>
+          </div>
+        </div>
+
+        <div style={{ display: "flex" }}>
+          <div style={{ marginRight: 10, display: "flex" }}>
+            <div style={{ marginRight: 10 }}>
+              <Button
+                onClick={() => {
+                  navigate("/addcourse");
+                }}
+              >
+                Add course
+              </Button>
+            </div>
+
+            <div style={{ marginRight: 10 }}>
+              <Button
+                onClick={() => {
+                  navigate("/courses");
+                }}
+              >
+                Courses
+              </Button>
+            </div>
+
+            <Button
+              variant={"contained"}
+              onClick={() => {
+                localStorage.setItem("token", null);
+                window.location = "/";
+              }}
+            >
+              Logout
+            </Button>
+          </div>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  } else {
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: 4,
+          zIndex: 1,
+        }}
+      >
+        <div style={{ marginLeft: 10 }}>
+          <Typography variant={"h6"}>Coursera</Typography>
+        </div>
+
+        <div style={{ display: "flex" }}>
+          <div style={{ marginRight: 10 }}>
+            <Button
+              variant={"contained"}
+              onClick={() => {
+                navigate("/signup");
+              }}
+            >
+              Signup
+            </Button>
+          </div>
+          <div>
+            <Button
+              variant={"contained"}
+              onClick={() => {
+                navigate("/signin");
+              }}
+            >
+              Signin
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
 
 export default Appbar;
