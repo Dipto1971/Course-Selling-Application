@@ -25,8 +25,6 @@ const Courses = () => {
           });
           const data = res.data;
           setCourses(data.courses);
-
-          console.log(data);
         } catch (e) {
           console.log(e);
         }
