@@ -40,11 +40,13 @@ function Appbar() {
 
         <div style={{ display: "flex" }}>
           <div style={{ marginRight: 10 }}>
-            <Typography color="#000598">{userEmail}</Typography>
+            <Typography
+              variant={"inherit"}
+              style={{ margin: "auto", width: "50%", padding: "10px" }}
+            >
+              {userEmail}
+            </Typography>
           </div>
-        </div>
-
-        <div style={{ display: "flex" }}>
           <div style={{ marginRight: 10, display: "flex" }}>
             <div style={{ marginRight: 10 }}>
               <Button
