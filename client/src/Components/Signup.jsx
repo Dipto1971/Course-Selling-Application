@@ -32,7 +32,7 @@ function Signup() {
                         setEmail(event.target.value);
                     }}
                     fullWidth={true}
-                    label="Email"
+                    label="Username"
                     variant="outlined"
                 />
                 <br/><br/>
