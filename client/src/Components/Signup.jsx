@@ -3,10 +3,16 @@ import TextField from "@mui/material/TextField";
 import {Card, Typography} from "@mui/material";
 import {useState} from "react";
 import axios from "axios";
+import { BASE_URL } from "../config.js";
+import {useNavigate} from "react-router-dom";
+import {useSetRecoilState} from "recoil";
+import {userState} from "../store/atoms/user.js";
 
 function Signup() {
-    const [username, setUsername] = useState("")
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+    const setUser = useSetRecoilState(userState);
 
     return <div>
             <div style={{
@@ -22,9 +28,8 @@ function Signup() {
         <div style={{display: "flex", justifyContent: "center"}}>
             <Card varint={"outlined"} style={{width: 400, padding: 20}}>
                 <TextField
-                    onChange={(evant11) => {
-                        let elemt = evant11.target;
-                        setUsername(elemt.value);
+                    onChange={(event) => {
+                        setEmail(event.target.value);
                     }}
                     fullWidth={true}
                     label="Email"
@@ -46,13 +51,15 @@ function Signup() {
                     size={"large"}
                     variant="contained"
                     onClick={async() => {
-                        const response = await axios.post("http://localhost:3000/admin/signup", {
-                            username: username,
+                        const response = await axios.post(`${BASE_URL}/admin/signup`, {
+                            username: email,
                             password: password
                         })
                         let data = response.data;
                         localStorage.setItem("token", data.token);
-                        window.location = "/"
+                        // window.location = "/"
+                        setUser({userEmail: email, isLoading: false})
+                        navigate("/courses")
                     }}
 
                 > Signup</Button>

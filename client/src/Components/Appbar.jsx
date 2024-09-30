@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Appbar() {
   const navigate = useNavigate();
@@ -35,7 +35,9 @@ function Appbar() {
         }}
       >
         <div style={{ marginLeft: 10 }}>
-          <Typography variant={"h6"}>Coursera</Typography>
+          <Link to="/" style={{color: "#000000"}}>
+          <Typography variant={"h5"}>Coursera</Typography>
+          </Link>
         </div>
 
         <div style={{ display: "flex" }}>
