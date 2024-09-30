@@ -37,6 +37,6 @@ export const courseImage = selector ({
     key: 'courseImageState',
     get: ({get}) => {
         const course = get(courseState);
-        return course.course.image;
+        return course.course.imageLink;
     }
 });
